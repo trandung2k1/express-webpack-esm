@@ -14,9 +14,14 @@ module.exports = (env, argv) => {
             reasons: true,
             errorDetails: false,
         },
+        resolve: {
+            alias: {
+                '@configs': path.resolve(__dirname, 'src/configs/'),
+            },
+        },
         target: 'node',
         entry: {
-            main: ['./index.mjs'],
+            main: ['./src/index.mjs'],
         },
         output: {
             filename: '[name].bundle.js',
@@ -29,17 +34,6 @@ module.exports = (env, argv) => {
         mode: isProduction ? 'production' : 'development',
         watch: isProduction ? false : true,
         plugins: [new CleanWebpackPlugin(), new webpack.ProgressPlugin(), new Dotenv()],
-        devServer: isProduction
-            ? {}
-            : {
-                  static: {
-                      directory: path.join(__dirname, 'dist'),
-                  },
-                  compress: true,
-                  open: true,
-                  port: 9000,
-              },
-
         optimization: isProduction
             ? {
                   minimize: true,
@@ -64,6 +58,16 @@ module.exports = (env, argv) => {
                 },
             ],
         },
+        // devServer: isProduction
+        //     ? {}
+        //     : {
+        //           static: {
+        //               directory: path.join(__dirname, 'dist'),
+        //           },
+        //           compress: true,
+        //           open: true,
+        //           port: 3000,
+        //       },
     };
     if (isProduction) {
         config.plugins = [

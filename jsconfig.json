@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "esModuleInterop": true,
+        "target": "es6",
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "allowJs": true,
+        "baseUrl": ".",
+        "paths": {
+            "@configs": ["src/configs"],
+            "@configs/*": ["src/configs/*"]
+        }
+    },
+    "lib": ["es2015"],
+    "exclude": ["node_modules"],
+    "include": ["src/**/*.mjs"]
+}

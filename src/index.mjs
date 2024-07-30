@@ -3,7 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import colors from 'colors';
 import { createClient } from 'redis';
-import connectDB from './db.mjs';
+import connectDB from '@configs/db.mjs';
 const port = process.env.PORT || 3000;
 const redisClient = createClient({});
 redisClient.on('error', (err) => {
@@ -21,7 +21,7 @@ const startServer = () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: false }));
     app.get('/', (req, res) => {
-        throw new Error('Haha');
+        return res.send('Welcome to the server');
     });
     app.get('/ok', (req, res) => {
         return res.send('Hello, world');
